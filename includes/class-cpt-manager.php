@@ -62,5 +62,10 @@ class SCF_CPT_Manager {
 
 			register_post_type( $slug, $register_args );
 		}
+
+		// Ensure Elementor is enabled for these CPTs
+		if ( class_exists( 'SCF_Elementor_Integration' ) ) {
+			SCF_Elementor_Integration::enable_elementor_support();
+		}
 	}
 }

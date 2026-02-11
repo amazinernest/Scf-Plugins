@@ -3,7 +3,7 @@
  * Plugin Name: Simple CPT & Fields
  * Description: A lightweight plugin to create Custom Post Types and Fields with Elementor support.
  * Version: 1.0.0
- * Author: Antigravity
+ * Author: Ernesto
  * Text Domain: simple-cpt-fields
  */
 
@@ -58,7 +58,9 @@ final class Simple_CPT_Fields {
 		require_once SCF_PATH . 'includes/class-taxonomy-manager.php';
 		require_once SCF_PATH . 'includes/class-field-manager.php';
 		require_once SCF_PATH . 'includes/class-elementor-integration.php';
+
 		require_once SCF_PATH . 'includes/class-shortcode.php';
+		require_once SCF_PATH . 'includes/class-template-loader.php';
 	}
 
 	/**
@@ -70,7 +72,9 @@ final class Simple_CPT_Fields {
 		new SCF_CPT_Manager();
 		new SCF_Taxonomy_Manager();
 		new SCF_Field_Manager();
+
 		new SCF_Shortcode();
+		new SCF_Template_Loader();
 		
 		// Initialize Elementor integration
 		add_action( 'elementor/init', [ 'SCF_Elementor_Integration', 'init' ] );
@@ -80,8 +84,10 @@ final class Simple_CPT_Fields {
 	 * Activate Plugin
 	 */
 	public static function activate() {
+
 		require_once SCF_PATH . 'includes/class-cpt-manager.php';
 		require_once SCF_PATH . 'includes/class-taxonomy-manager.php';
+		require_once SCF_PATH . 'includes/class-elementor-integration.php';
 		
 		$cpt_manager = new SCF_CPT_Manager();
 		$cpt_manager->register_post_types();
